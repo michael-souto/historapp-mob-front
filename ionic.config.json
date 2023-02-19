@@ -1,0 +1,7 @@
+{
+  "name": "historapp-mob-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
