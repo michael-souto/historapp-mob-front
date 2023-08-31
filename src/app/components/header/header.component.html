@@ -1,0 +1,24 @@
+<ion-header #header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" *ngIf="showBackButton">
+      <ion-back-button
+        [defaultHref]="utilsService.getDefautRouteAbove()"
+      ></ion-back-button>
+    </ion-buttons>
+    <ng-content select="[buttonsStart]"></ng-content>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ng-content select="[buttonsEnd]"></ng-content>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="onHandleInput.observers.length > 0">
+    <ion-searchbar
+      [debounce]="500"
+      animated="true"
+      show-clear-button="always"
+      clear-icon="trash-bin"
+      (ionChange)="handleInput($event)"
+    ></ion-searchbar>
+  </ion-toolbar>
+</ion-header>

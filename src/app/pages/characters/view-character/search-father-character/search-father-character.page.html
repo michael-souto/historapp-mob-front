@@ -1,0 +1,9 @@
+<app-search-entity style="position: fixed; width: 100%;"
+  title="Mãe do personagem"
+  [service]="characterSearchService"
+  firstLine="name"
+  secondLine="comments"
+  [showThumbnail]="true"
+  defaultThumbnail="/assets/icon/character.png"
+  (onSelectEntity)="setFather($event)"
+></app-search-entity>

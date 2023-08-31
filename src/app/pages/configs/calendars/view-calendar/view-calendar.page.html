@@ -1,0 +1,104 @@
+<app-header
+  title="Calendário"
+></app-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>#{{calendar.id}} {{calendar.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content> {{calendar.comments}} </ion-card-content>
+    <ion-button
+      fill="clear"
+      [routerLink]="['/configs/calendars/edit', calendar.id]"
+      >Editar</ion-button
+    >
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Meses</ion-card-title>
+      <ion-card-subtitle>Meses do calendário</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-list>
+      <ion-item
+        *ngFor="let item of months"
+        button
+        detail="true"
+        (click)="editMonth(item)"
+      >
+        <ion-label>
+          <h3>{{item.orderYear}}/{{item.name}}</h3>
+          <p>{{item.comments}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-button fill="clear" (click)="setOpen(true)" expand="block"
+      >Adicionar Mês</ion-button
+    >
+  </ion-card>
+
+  <ion-modal [isOpen]="isModalOpenMonth" (willDismiss)="cancelMonth()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancelMonth()" [strong]="true"
+              >Voltar</ion-button
+            >
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button (click)="saveMonth()" [strong]="true"
+              >Salvar</ion-button
+            >
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label position="stacked">Nome do mês</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Fevereiro, Nisã..."
+            [(ngModel)]="monthEdit.name"
+            required
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Ordem no ano</ion-label>
+          <ion-input
+            type="number"
+            placeholder="Ordenanção em que o mês se encontra no ano"
+            type="number"
+            [(ngModel)]="monthEdit.orderYear"
+            required
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Número de dias</ion-label>
+          <ion-input
+            type="number"
+            placeholder="31"
+            type="number"
+            [(ngModel)]="monthEdit.numberDays"
+            required
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Comentários</ion-label>
+          <ion-textarea
+            [(ngModel)]="monthEdit.comments"
+            placeholder="Comentários sobre esse mês"
+            [autoGrow]="true"
+          >
+          </ion-textarea>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

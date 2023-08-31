@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'historapp-mob-front',
+  appId: 'historapp.detrasoft.com',
+  appName: 'Historapp',
   webDir: 'www',
   bundledWebRuntime: false
 };

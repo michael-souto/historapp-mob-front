@@ -1,0 +1,57 @@
+<app-header [title]="title" routeBase="locales"></app-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item counter="true" class="ion-marging">
+      <ion-label position="stacked" class="ion-invalid">Nome</ion-label>
+      <ion-input
+        [(ngModel)]="locale.name"
+        maxlength="50"
+        placeholder="Nome do lugar"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" class="ion-invalid">Descrição</ion-label>
+      <ion-textarea
+        [(ngModel)]="locale.comments"
+        placeholder="Comentários sobre o lugar"
+        [autoGrow]="true"
+      >
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item counter="true" class="ion-marging">
+      <ion-label position="stacked" class="ion-invalid">Latitude</ion-label>
+      <ion-input
+        [(ngModel)]="locale.lat"
+        placeholder="Latitude do lugar"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item counter="true" class="ion-marging">
+      <ion-label position="stacked" class="ion-invalid">Longitude</ion-label>
+      <ion-input
+        [(ngModel)]="locale.lng"
+        placeholder="Longitude do lugar"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item counter="true" class="ion-marging">
+      <ion-label position="stacked" class="ion-invalid">Zoom</ion-label>
+      <ion-input
+        [(ngModel)]="locale.visibility"
+        placeholder="Zoom para aproximação do mapa"
+      ></ion-input>
+    </ion-item>
+    <app-tag-editor [tags]="localesService.tags"></app-tag-editor>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="saveLocale()">
+      <ion-icon name="save"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+

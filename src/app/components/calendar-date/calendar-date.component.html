@@ -1,0 +1,62 @@
+<ion-modal [isOpen]="isModalOpen" (willDismiss)="cancelCalendarDate()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancelCalendarDate()">Voltar</ion-button>
+        </ion-buttons>
+        <ion-title>{{ titleModal }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="saveCalendarDate()" [strong]="true"
+          [disabled]="!isValidForSave()"
+            >Salvar</ion-button
+          >
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list>
+        <ion-item>
+          <ion-label position="fixed">Ano</ion-label>
+          <ion-input
+            type="number"
+            [(ngModel)]="calendarDate.historicYear"
+            placeholder="2002"
+          ></ion-input>
+
+          <ion-select label="Select" [(ngModel)]="calendarDate.negativeYear" >
+            <ion-select-option [value]="true">{{calendarSelected?.acronymForYearsBeforeZero}}</ion-select-option>
+            <ion-select-option [value]="false">{{calendarSelected?.acronymForYearsAfterZero}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="fixed">Mês</ion-label>
+          <ion-select
+            [value]="monthSelected"
+            [compareWith]="compareWith"
+            (ionChange)="handleChange($event)"
+            interface="action-sheet"
+            placeholder="Selecione o mês"
+          >
+            <ion-select-option
+              *ngFor="let m of calendarSelected?.months"
+              [value]="m"
+              >{{ m.name }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="fixed">Dia</ion-label>
+          <ion-input
+            [disabled]="(numberDays ?? 0) === 0"
+            type="number"
+            [(ngModel)]="calendarDate.historicDay"
+            [maxlength]="(numberDays ?? 0).toString().length"
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,36 @@
+<app-header title="Anotações"
+[showBackButton]="false"
+(onHandleInput)="handleInput($event)"
+></app-header>
+
+<ion-content fullscreen="true">
+  <ion-item
+    *ngFor="let annotation of list; let index"
+    button
+    detail="true"
+    [routerLink]="['../view', annotation.id]"
+  >
+
+    <ion-label>
+      <h2>{{annotation.title}}</h2>
+      <p>{{utilsService.removeTagsHTML(annotation.text)}}</p>
+      <p *ngIf="annotation.tags">
+        <ion-chip
+          color="primary"
+          *ngFor="let dtb of utilsService.getArrayTags(annotation.tags)"
+          >{{dtb}}</ion-chip
+        >
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="new()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

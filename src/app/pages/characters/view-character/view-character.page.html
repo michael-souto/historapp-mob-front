@@ -1,0 +1,80 @@
+<app-header title="Personagem" routeBase="characters"></app-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{character.name}}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-chip
+          color="primary"
+          *ngFor="let dtb of utilsService.getArrayTags(character.tags)"
+          >{{dtb}}</ion-chip
+        >
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content> {{character.comments}} </ion-card-content>
+    <ion-button
+      fill="clear"
+      [routerLink]="['/characters/view/'+character.id+'/edit']"
+    >
+      <ion-icon slot="start" name="create"></ion-icon>Editar</ion-button
+    >
+    <ion-button fill="clear" color="danger" (click)="showDialogDelete()">
+      <ion-icon slot="start" name="trash"></ion-icon>Excluir</ion-button
+    >
+  </ion-card>
+
+  <ion-item
+    button
+    detail="true"
+    [routerLink]="['birth-date']"
+  >
+    <ion-label>
+      <h2>Nascimento</h2>
+      <p>Momento histórico de seu nascimento</p>
+      <p>
+        <ion-chip color="primary" *ngFor="let dtb of datesBirth"
+          >{{dtb}}</ion-chip
+        >
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item
+    button
+    detail="true"
+    [routerLink]="['death-date']"
+  >
+    <ion-label>
+      <h2>Falecimento</h2>
+      <p>Momento histórico se sua morte</p>
+      <p>
+        <ion-chip color="primary" *ngFor="let dtb of datesDeath"
+          >{{dtb}}</ion-chip
+        >
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item
+    button
+    detail="true"
+    [routerLink]="['father']"
+  >
+    <ion-label>
+      <h2>Pai do personagem</h2>
+      <p>{{character.father?.name ?? 'Não informado'}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item
+    button
+    detail="true"
+    [routerLink]="['mother']"
+  >
+    <ion-label>
+      <h2>Mãe do personagem</h2>
+      <p>{{character.mother?.name ?? 'Não informado'}}</p>
+    </ion-label>
+  </ion-item>
+</ion-content>

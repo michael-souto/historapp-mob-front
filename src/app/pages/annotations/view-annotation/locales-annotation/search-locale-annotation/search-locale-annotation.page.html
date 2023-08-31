@@ -1,0 +1,9 @@
+<app-search-entity style="position: fixed; width: 100%;"
+  title="Lugares"
+  [service]="localeSearchService"
+  firstLine="name"
+  secondLine="comments"
+  [showThumbnail]="true"
+  defaultThumbnail="/assets/icon/locale.png"
+  (onSelectEntity)="addLocaleInAnnotation($event)"
+></app-search-entity>

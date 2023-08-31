@@ -31,8 +31,16 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "styles": [
+              "src/theme/variables.scss",
+              "src/global.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "node_modules/quill/dist/quill.core.css",
+              "node_modules/quill/dist/quill.bubble.css",
+              "node_modules/quill/dist/quill.snow.css"],
+            "scripts": [
+              "node_modules/quill/dist/quill.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -64,6 +72,20 @@
               "sourceMap": true,
               "namedChunks": true
             },
+            "cloud": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.cloud.ts"
+                }
+              ]
+            },
             "ci": {
               "progress": false
             }
@@ -78,6 +100,9 @@
             },
             "development": {
               "browserTarget": "app:build:development"
+            },
+            "cloud": {
+              "browserTarget": "app:build:cloud"
             },
             "ci": {
               "progress": false
@@ -112,7 +137,9 @@
               }
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "ci": {
@@ -129,14 +156,16 @@
               "src/**/*.html"
             ]
           }
-        }
+        },
+        "resources": "capacitor-resources -p android,ios"
       }
     }
   },
   "cli": {
     "schematicCollections": [
       "@ionic/angular-toolkit"
-    ]
+    ],
+    "analytics": false
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

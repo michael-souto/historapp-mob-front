@@ -1,0 +1,40 @@
+<app-header
+  title="Eventos Históricos"
+  [showBackButton]="false"
+  (onHandleInput)="handleInput($event)"
+></app-header>
+
+<ion-content fullscreen="true">
+  <ion-item
+    *ngFor="let event of list; let index"
+    button
+    detail="true"
+    [routerLink]="['../view', event.id]"
+  >
+    <ion-thumbnail slot="start">
+      <img src="/assets/icon/event.png" alt="avatar" />
+    </ion-thumbnail>
+
+    <ion-label>
+      <h2>{{event.title}}</h2>
+      <p>{{event.description}}</p>
+      <p *ngIf="event.tags">
+        <ion-chip
+          color="primary"
+          *ngFor="let dtb of utilsService.getArrayTags(event.tags)"
+          >{{dtb}}</ion-chip
+        >
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="new()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

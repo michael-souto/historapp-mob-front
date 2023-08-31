@@ -1,0 +1,41 @@
+<app-header title="Data de falecimento"></app-header>
+
+<ion-content fullscreen="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item
+          lines="full"
+          button
+          detail="true"
+          *ngFor="let c of charactersService.character.deathDate?.datesCalendars"
+          (click)="calendarDate.editDate(c, calendarsService.getCalendarById(c.idCalendar))"
+        >
+          <ion-icon name="calendar" slot="start"></ion-icon>
+          <ion-label>
+            <h3>{{c.idCalendar}}-{{c.nameCalendar}}</h3>
+            <p>{{getDateByIdCalendar(c.idCalendar)}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab
+    *ngIf="charactersService.character.deathDate?.id"
+    disabled="true"
+    slot="fixed"
+    vertical="bottom"
+    horizontal="end"
+  >
+    <ion-fab-button (click)="presentActions()">
+      <ion-icon name="trash"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<app-calendar-date
+  #calendarDate
+  title="Data de nascimento"
+  (onSaveDate)="onSaveDate($event)"
+></app-calendar-date>

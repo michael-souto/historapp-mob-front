@@ -1,0 +1,9 @@
+<app-search-entity style="position: fixed; width: 100%;"
+  title="Eventos"
+  [service]="eventSearchService"
+  firstLine="title"
+  secondLine="description"
+  [showThumbnail]="true"
+  defaultThumbnail="/assets/icon/event.png"
+  (onSelectEntity)="addEventInAnnotation($event)"
+></app-search-entity>

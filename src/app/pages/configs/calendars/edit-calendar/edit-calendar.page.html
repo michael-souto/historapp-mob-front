@@ -1,0 +1,67 @@
+<app-header [title]="title" routeBase="configs/calendars"></app-header>
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item counter="true" class="ion-marging">
+      <ion-label position="stacked" class="ion-invalid">Nome</ion-label>
+      <ion-input
+        [(ngModel)]="calendar.name"
+        maxlength="50"
+        placeholder="Nome do calendário"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" class="ion-invalid">Comentários</ion-label>
+      <ion-textarea
+        [(ngModel)]="calendar.comments"
+        placeholder="Descreva o calendaro e seus comentários"
+        [autoGrow]="true"
+        value=""
+      >
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" class="ion-invalid"
+        >Permitir ano zero</ion-label
+      >
+      <ion-toggle [(ngModel)]="calendar.allowYearZero"> </ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" class="ion-invalid"
+        >Permitir anos anteriores a zero</ion-label
+      >
+      <ion-toggle [(ngModel)]="calendar.allowYearBeforeZero"> </ion-toggle>
+    </ion-item>
+
+    <ion-item counter="true" class="ion-marging">
+      <ion-label position="stacked" class="ion-invalid"
+        >Sigla dos anos anteriores a zero</ion-label
+      >
+      <ion-input
+        [(ngModel)]="calendar.acronymForYearsBeforeZero"
+        maxlength="50"
+        placeholder="Ex: A.C"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item counter="true" class="ion-marging">
+      <ion-label position="stacked" class="ion-invalid"
+        >Sigla dos anos posteriores a zero</ion-label
+      >
+      <ion-input
+        [(ngModel)]="calendar.acronymForYearsAfterZero"
+        maxlength="50"
+        placeholder="Ex: D.C"
+      ></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="saveCalendar()">
+      <ion-icon name="save"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

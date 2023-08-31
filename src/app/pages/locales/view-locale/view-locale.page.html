@@ -1,0 +1,22 @@
+<app-header title="Lugar" routeBase="locales"></app-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{locale.name}}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-chip
+          color="primary"
+          *ngFor="let dtb of utilsService.getArrayTags(locale.tags)"
+          >{{dtb}}</ion-chip
+        >
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content> {{locale.comments}} </ion-card-content>
+    <ion-button fill="clear" [routerLink]="['/locales/view/'+locale.id+'/edit']">
+      <ion-icon slot="start" name="create"></ion-icon>Editar</ion-button
+    >
+    <ion-button fill="clear" color="danger" (click)="showDialogDelete()">
+      <ion-icon slot="start" name="trash"></ion-icon>Excluir</ion-button
+    >
+  </ion-card>
+</ion-content>

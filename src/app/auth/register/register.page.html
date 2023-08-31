@@ -1,0 +1,77 @@
+<ion-content color="primary" class="ion-padding">
+  <form #form="ngForm">
+    <ion-grid [fixed]="true">
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center>
+          <div>
+            <h3>CADASTRE-SE</h3>
+          </div>
+          <div>
+            <ion-item>
+              <ion-input
+                name="firstName"
+                #firstName
+                placeholder="Nome"
+                required
+                ngModel
+              ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                name="lastName"
+                #lastName
+                placeholder="Sobrenome"
+                required
+                ngModel
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                name="email"
+                #email
+                type="email"
+                placeholder="email@..."
+                required
+                ngModel
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                name="password"
+                #password
+                type="password"
+                placeholder="Password"
+                required
+                ngModel
+              ></ion-input>
+              <ion-input
+                name="confirm"
+                #confirm
+                type="password"
+                placeholder="Confirme sua senha"
+                required
+                ngModel
+              ></ion-input>
+            </ion-item>
+          </div>
+          <div class="ion-padding">
+            <ion-button
+              size="large"
+              type="submit"
+              [disabled]="form.invalid"
+              (click)="register(firstName.value, lastName.value, email.value, password.value, confirm.value)"
+              expand="block"
+              >Registrar</ion-button
+            >
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-center>
+        <div text-center>
+          <a routerLink="/login"> Voltar</a>
+        </div>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

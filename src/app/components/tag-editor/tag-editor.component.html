@@ -1,0 +1,12 @@
+<ion-item>
+  <ion-label position="start" class="ion-text-wrap">
+    <ion-chip *ngFor="let e of tags; let i = index">
+      <ion-label>{{ e }}</ion-label>
+      <ion-icon name="close-outline" (click)="removeItem(i)"></ion-icon>
+    </ion-chip>
+  </ion-label>
+  <ion-button slot="end" (click)="presentNewTag()">
+    <ion-icon slot="end" name="add"></ion-icon>
+    #TAG
+  </ion-button>
+</ion-item>

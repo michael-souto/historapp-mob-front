@@ -1,0 +1,9 @@
+<app-search-entity style="position: fixed; width: 100%;"
+  title="Personagens"
+  [service]="characterSearchService"
+  firstLine="name"
+  secondLine="comments"
+  [showThumbnail]="true"
+  defaultThumbnail="/assets/icon/character.png"
+  (onSelectEntity)="addCharacterInAnnotation($event)"
+></app-search-entity>

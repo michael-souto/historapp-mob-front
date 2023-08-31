@@ -1,0 +1,177 @@
+<ion-header #header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+        [defaultHref]="utilsService.getDefautRouteAbove()"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+<ion-content scrollEvents="true" appHideHeader [header]="header" [footer]="footer">
+  <ion-list style="padding-bottom: 0px">
+    <ion-item counter="true">
+      <ion-input
+        [(ngModel)]="annotation.title"
+        placeholder="Título da anotação"
+        required
+      ></ion-input>
+    </ion-item>
+  </ion-list>
+  <quill-editor bounds="self"
+    #editor
+    class="text-annotation"
+    [(ngModel)]="annotation.text"
+    [required]="true"
+    (onSelectionChanged)="onSelection($event)"
+    (onContentChanged)="onContentChanged($event)"
+    theme="bubble"
+    placeholder="Digite sua anotação aqui"
+    style="height: auto; width: 100%"
+  >
+    <div quill-editor-toolbar class="toolbar-annotation">
+      <span class="ql-formats">
+        <select class="ql-size">
+          <option value="small"></option>
+          <option selected></option>
+          <option value="large"></option>
+          <option value="huge"></option>
+        </select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-bold"></button>
+        <button class="ql-italic"></button>
+        <button class="ql-underline"></button>
+        <button class="ql-strike"></button>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-color"></select>
+        <select class="ql-background"></select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-list" value="ordered"></button>
+        <button class="ql-list" value="bullet"></button>
+        <select class="ql-align">
+          <option selected></option>
+          <option value="center"></option>
+          <option value="right"></option>
+          <option value="justify"></option>
+        </select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-link"></button>
+        <button class="ql-image"></button>
+      </span>
+    </div>
+  </quill-editor>
+</ion-content>
+<ion-footer #footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button size="small"
+        [ngClass]="{'fa-fade': canComment}"
+        id="open-modal"
+        [color]="canComment ? 'success' : 'primary'"
+      >
+        <i class="fa-solid fa-comment-dots" style="margin-right: 5px;"></i>
+        {{canComment ? 'Comentar' : 'Comentários'}}
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button size="small" (click)="saveAnnotation()">
+        <i class="fa-solid fa-floppy-disk" style="margin-right: 5px;"></i>
+         Salvar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-modal trigger="open-modal" (willPresent)="willPresentComment()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Fechar</ion-button>
+        </ion-buttons>
+        <ion-title>Comentários</ion-title>
+        <ion-buttons slot="end">
+          <ion-button
+            (click)="confirm()"
+            *ngIf="editComment.textReference && editComment?.text"
+            [strong]="true"
+            color="success"
+            class="fa-fade"
+          >
+            <i class="fa-solid fa-plus"></i>
+            {{editComment.id ? 'Confirmar' : 'Adicionar'}}
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-card *ngIf="editComment.textReference">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-label color="primary">
+              Trecho: <i>"{{editComment.textReference}}"</i>
+            </ion-label></ion-card-title
+          >
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="stacked">Comentário</ion-label>
+            <ion-textarea
+              label="Comentário"
+              fill="solid"
+              [(ngModel)]="editComment.text"
+              [autoGrow]="true"
+              placeholder="Escreva aqui seu comentário sobre o trecho"
+            ></ion-textarea>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-list>
+        <ion-item lines="full" *ngIf="annotation.comments?.length === 0">
+          <ion-text color="danger">
+            <h5>Nenhum comentário adicionado para a anotação.</h5>
+          </ion-text>
+        </ion-item>
+
+        <ion-item
+          button
+          (click)="setComment(comment)"
+          *ngFor="let comment of annotation.comments"
+        >
+          <ion-label class="ion-text-wrap">
+            <ion-text color="primary">
+              <h4 color="primary"><i>"{{comment.textReference}}"</i></h4>
+            </ion-text>
+            <p>{{comment.text}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    <ion-footer class="ion-no-border">
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button
+            (click)="delete()"
+            *ngIf="editComment.id"
+            [strong]="true"
+            color="danger"
+          >
+            <i class="fa-solid fa-trash"></i>
+            Excluir
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,84 @@
+<app-header title="Evento" routeBase="events"></app-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{event.title}}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-chip
+          color="primary"
+          *ngFor="let dtb of utilsService.getArrayTags(event.tags)"
+          >{{dtb}}</ion-chip
+        >
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content> {{event.description}} </ion-card-content>
+    <ion-button fill="clear" [routerLink]="['/events/view/'+event.id+'/edit']">
+      <ion-icon slot="start" name="create"></ion-icon>Editar</ion-button
+    >
+    <ion-button fill="clear" color="danger" (click)="showDialogDelete()">
+      <ion-icon slot="start" name="trash"></ion-icon>Excluir</ion-button
+    >
+  </ion-card>
+
+  <ion-item button detail="true" [routerLink]="['start-of-period']">
+    <ion-label>
+      <h2>Início do evento</h2>
+      <p>Momento histórico em que o evento se iniciou</p>
+      <p>
+        <ion-chip color="primary" *ngFor="let dtb of datesStartOfPeriod"
+          >{{dtb}}</ion-chip
+        >
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item button detail="true" [routerLink]="['end-of-period']">
+    <ion-label>
+      <h2>Término do evento</h2>
+      <p>Momento histórico em que o evento terminou</p>
+      <p>
+        <ion-chip color="primary" *ngFor="let dtb of datesEndOfPeriod"
+          >{{dtb}}</ion-chip
+        >
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item button detail="true" [routerLink]="['characters']">
+    <ion-label>
+      <h2>Personagens</h2>
+      <p>Personagens relacionados ao evento</p>
+      <p>
+        <ion-chip color="primary" *ngFor="let chr of charactersOfEvent"
+          >{{chr}}</ion-chip
+        >
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item button detail="true" [routerLink]="['locales']">
+    <ion-label>
+      <h2>Lugares</h2>
+      <p>Lugares relacionados ao evento</p>
+      <p>
+        <ion-chip color="primary" *ngFor="let loc of localesOfEvent"
+          >{{loc}}</ion-chip
+        >
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item-group>
+    <ion-item-divider>
+      <ion-label> <h2>Anotações</h2> </ion-label>
+    </ion-item-divider>
+
+    <ion-item *ngFor="let annotation of annotations" button detail="true" [routerLink]="['/annotations/view', annotation.id]">
+      <ion-label>
+        <h2>{{annotation.title}}</h2>
+        <p>{{utilsService.removeTagsHTML(annotation.text)}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-item-group>
+</ion-content>

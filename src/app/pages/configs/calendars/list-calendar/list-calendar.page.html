@@ -1,0 +1,29 @@
+<app-header
+  title="Calendários"
+  [showBackButton]="false"
+></app-header>
+
+<ion-content fullscreen="true">
+  <ion-refresher slot="fixed" (ionRefresh)="onIonInfinite($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let calendar of list; let index">
+    <ion-card-header>
+      <ion-card-title>#{{calendar.id}} {{calendar.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content> {{calendar.comments}} </ion-card-content>
+    <ion-button fill="clear" [routerLink]="['../view', calendar.id]"
+      >Ver mais</ion-button
+    >
+  </ion-card>
+
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="new()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
