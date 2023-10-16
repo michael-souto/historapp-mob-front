@@ -1,0 +1,29 @@
+<app-header
+  title="Personagens da anotação"
+  [routeBase]="'annotations'"
+></app-header>
+<ion-content>
+  <ion-list>
+    <ion-item
+      detail="true"
+      [routerLink]="[]"
+      (click)="presentActions(item)"
+      *ngFor="let item of characters; let index"
+    >
+      <ion-thumbnail slot="start">
+        <img src="/assets/icon/character.png" [alt]="item.name" />
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{ item.name }}</h3>
+        <p *ngIf="item.comments">{{ item.comments }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <app-message *ngIf="characters?.length === 0" message="Nenhum personagem relacionado à anotação"></app-message>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="['search-character']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

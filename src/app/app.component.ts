@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
 import { LogoutService } from './services/auth/logout.service';
+import { IconName, faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,19 @@ import { LogoutService } from './services/auth/logout.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+
+  faCoffee = faCoffee;
+
   public appPages = [
-    { title: 'Eventos Históricos', url: '/events/list', icon: 'calendar-number' },
-    { title: 'Personagens', url: '/characters/list', icon: 'person-circle' },
-    { title: 'Lugares', url: '/locales/list', icon: 'location' },
-    { title: 'Anotações', url: '/annotations/list', icon: 'create' },
+    { title: 'Home', url: '/home', icon: 'home' },
+    { title: 'Anotações', url: '/annotations', icon: 'sticky-note' },
+    { title: 'Personagens', url: '/characters/list', iconClass: 'fas', icon: 'user-friends' },
+    { title: 'Eventos Históricos', url: '/events/list', icon: 'calendar-day' },
+    { title: 'Lugares', url: '/locales/list', icon: 'map-marked-alt' },
     //{ title: 'TAGs (Em construção)', url: '/tags', icon: 'bookmarks' },
-    { title: 'Configurações', url: '/configs', icon: 'settings' }
+    { title: 'Configurações', url: '/configs', icon: 'cogs' }
   ];
+
   constructor(private authService: AuthService,
     private logoutService: LogoutService) {}
 
@@ -36,5 +42,10 @@ export class AppComponent {
     .catch((erro) => {
       console.log(erro)
     });
+  }
+
+  getIcon(t: any): IconName {
+    const fg: IconName = t;
+    return fg;
   }
 }

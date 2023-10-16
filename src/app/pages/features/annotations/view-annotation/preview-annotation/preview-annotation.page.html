@@ -1,0 +1,113 @@
+<app-header title="Anotação" routeBase="annotations"></app-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{annotation.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <quill-editor
+        [readOnly]="true"
+        bounds="self"
+        [(ngModel)]="annotation.text"
+        [required]="true"
+        theme="bubble"
+        style="height: auto; width: 95%"
+      >
+      </quill-editor>
+    </ion-card-content>
+  </ion-card>
+
+  <app-tag-editor
+    [tags]="annotationsService.tags"
+    (onAddTag)="addTag($event)"
+    (onRemoveTag)="removeTag($event)"
+  ></app-tag-editor>
+
+  <ion-card *ngIf="annotation.comments.length > 0">
+    <ion-card-header>
+      <ion-card-title>Comentários</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item *ngFor="let comment of annotation.comments">
+        <ion-label class="ion-text-wrap">
+          <ion-text color="primary">
+            <h4 color="primary"><i>"{{comment.textReference}}"</i></h4>
+          </ion-text>
+          <p>{{comment.text}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <ion-item button detail="true" [routerLink]="['characters']">
+    <ion-label>
+      <h2>Personagens</h2>
+      <p>Personagens relacionados</p>
+      <p>
+        <ion-chip color="primary" *ngFor="let chr of charactersOfAnnotation"
+          >{{chr}}</ion-chip
+        >
+      </p>
+    </ion-label>
+  </ion-item>
+  <ion-item button detail="true" [routerLink]="['locales']">
+    <ion-label>
+      <h2>Lugares</h2>
+      <p>Lugares relacionados</p>
+      <p>
+        <ion-chip color="primary" *ngFor="let loc of localesOfAnnotation"
+          >{{loc}}</ion-chip
+        >
+      </p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item button detail="true" [routerLink]="['events']">
+    <ion-label>
+      <h2>Eventos</h2>
+      <p>Eventos relacionados</p>
+      <p>
+        <ion-chip color="primary" *ngFor="let loc of eventsOfAnnotation"
+          >{{loc}}</ion-chip
+        >
+      </p>
+    </ion-label>
+  </ion-item> -->
+
+  <ion-item
+    lines="full"
+    button
+    detail="true"
+    (click)="downloadPDF(annotation.text ?? '', annotation.title ?? 'annotation')"
+  >
+    <fa-icon size="2x" icon="file-pdf" slot="start"> </fa-icon>
+    <ion-label>
+      <h2>Exportar PDF</h2>
+      <p>Exportar anotação para PDF</p>
+    </ion-label>
+  </ion-item>
+  <ion-item
+    color="danger"
+    lines="full"
+    button
+    detail="true"
+    (click)="showDialogDelete()"
+  >
+    <fa-icon size="2x" icon="trash-alt" slot="start" color="danger"> </fa-icon>
+    <ion-label>
+      <h2>Deletar</h2>
+      <p>Deletar esta anotação</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button
+      color="primary"
+      fill="clear"
+      [routerLink]="['/annotations/'+annotation.id+'/edit']"
+    >
+      <fa-icon size="2x" icon="edit"> </fa-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

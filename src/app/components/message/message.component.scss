@@ -1,0 +1,17 @@
+
+.message-warning {
+  margin: 0 0.7rem;
+  border-radius: 6px;
+  background: #fff2e2;
+  border: solid #cc8925;
+  border-width: 0 0 0 6px;
+  color: #cc8925;
+  div {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 1.75rem;
+    fa-icon {
+      margin-right: 0.8rem;
+    }
+  }
+}

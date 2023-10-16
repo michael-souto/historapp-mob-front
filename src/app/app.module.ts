@@ -11,14 +11,17 @@ import { environment } from 'src/environments/environment';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './services/auth/auth.guard';
 import { HttpSecurityInterceptor } from './services/auth/http-security-interceptor';
-import { LoginPage } from './auth/login/login.page';
-import { RegisterPage } from './auth/register/register.page';
-import { HideHeaderDirective } from './directives/hide-header.directive';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 
 export function tokenGetter() {
   return localStorage.getItem(environment.tokenGetter);
 }
+
 
 
 @NgModule({
@@ -30,6 +33,7 @@ export function tokenGetter() {
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    FontAwesomeModule,
     JwtModule.forRoot({
       config: {
         tokenGetter,
@@ -51,4 +55,8 @@ export function tokenGetter() {
 ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas, far, fab);
+  }
+}

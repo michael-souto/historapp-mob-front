@@ -1,8 +1,8 @@
-<ion-header #header [translucent]="true">
+<ion-header #header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start" *ngIf="showBackButton">
       <ion-back-button
-        [defaultHref]="utilsService.getDefautRouteAbove()"
+        [defaultHref]="routeBase"
       ></ion-back-button>
     </ion-buttons>
     <ng-content select="[buttonsStart]"></ng-content>

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">historapp-mob-front</string>
-    <string name="title_activity_main">historapp-mob-front</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">Note History</string>
+    <string name="title_activity_main">Note History</string>
+    <string name="package_name">notehistory.detrasoft.com</string>
+    <string name="custom_url_scheme">notehistory.detrasoft.com</string>
 </resources>

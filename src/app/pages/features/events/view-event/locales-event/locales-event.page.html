@@ -1,0 +1,31 @@
+<app-header
+  title="Lugares do evento"
+  [routeBase]="utilsService.getDefautRouteAbove()"
+></app-header>
+<ion-content>
+  <ion-list>
+    <ion-item
+      detail="true"
+      (click)="presentActions(item)"
+      *ngFor="let item of locales; let index"
+    >
+      <ion-thumbnail slot="start">
+        <img src="/assets/icon/locale.png" [alt]="item.name" />
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{ item.name }}</h3>
+        <p *ngIf="item.comments">{{ item.comments }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <app-message
+    *ngIf="locales?.length === 0"
+    message="Nenhum lugar relacionado ao evento"
+  ></app-message>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="['search-locale']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

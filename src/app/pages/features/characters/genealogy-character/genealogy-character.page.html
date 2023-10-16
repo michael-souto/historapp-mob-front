@@ -1,0 +1,53 @@
+<app-header title="Genealogia"> </app-header>
+
+<ion-content fullscreen="true">
+  <fam-diagram
+    [items]="items"
+    [pageFitMode]="PageFitMode.None"
+    [arrowsDirection]="GroupByType.Children"
+    [showExtraArrows]="false"
+    [linesColor]="'black'"
+    [normalLevelShift]="20"
+    [dotLevelShift]="20"
+    [lineLevelShift]="20"
+    [normalItemsInterval]="10"
+    [dotItemsInterval]="30"
+    [lineItemsInterval]="30"
+    [buttonsTemplate]="buttonsTemplate"
+  >
+  </fam-diagram>
+  <ng-template #buttonsTemplate let-itemConfig="context">
+    <ion-button (click)="onEditButtonClick($event, itemConfig)" color="danger">
+      <i class="fa-solid fa-user-pen"></i>
+    </ion-button>
+  </ng-template>
+
+  <!-- <ng-template #contactTemplate let-itemConfig="context" let-isCursor="isCursor">
+    <mat-card appearance="outlined" class="example-card" [ngStyle]="{height:150}">
+        <mat-card-title-group>
+            <mat-card-title>{{itemConfig.title}}</mat-card-title>
+            <mat-card-subtitle>Small</mat-card-subtitle>
+            <img mat-card-sm-image [src]="itemConfig.image" [alt]="itemConfig.title" >
+        </mat-card-title-group>
+        <mat-card-content>
+            {{itemConfig.description}}
+        </mat-card-content>
+        <ng-container *ngIf="isCursor">
+            <mat-card-footer>
+                <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+            </mat-card-footer>
+        </ng-container>
+    </mat-card>
+</ng-template>
+<ng-template #contactCursorTemplate let-itemConfig="context">
+    <div class="cursor-badge">
+        <button mat-fab [color]="itemConfig.context.color" (click)="onClick($event, itemConfig)" aria-label="Example icon button with a home icon">
+            <mat-icon>{{itemConfig.context.icon}}</mat-icon>
+        </button>
+    </div>
+</ng-template>
+<ng-template #contactHighlightTemplate let-itemConfig="context">
+    <div class="highlight-frame"></div>
+</ng-template> -->
+</ion-content>
+

@@ -1,0 +1,38 @@
+<app-header title="Lugar" routeBase="locales"></app-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{locale.name}}</ion-card-title>
+
+    </ion-card-header>
+    <ion-card-content> {{locale.comments}} </ion-card-content>
+  </ion-card>
+  <app-tag-editor
+  [tags]="localesService.tags"
+  (onAddTag)="addTag($event)"
+  (onRemoveTag)="removeTag($event)"
+></app-tag-editor>
+  <ion-item
+    color="danger"
+    lines="full"
+    button
+    detail="true"
+    (click)="showDialogDelete()"
+  >
+    <fa-icon size="2x" icon="trash-alt" slot="start" color="danger"> </fa-icon>
+    <ion-label>
+      <h2>Deletar</h2>
+      <p>Deletar este lugar</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button
+      color="primary"
+      fill="clear"
+      [routerLink]="['/locales/'+locale.id+'/edit']"
+    >
+      <fa-icon size="2x" icon="edit"> </fa-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

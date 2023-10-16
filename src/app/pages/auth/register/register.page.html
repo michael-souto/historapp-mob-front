@@ -1,0 +1,89 @@
+<ion-content [fullscreen]="true">
+  <form
+    #form="ngForm"
+    (ngSubmit)="register(firstName.value, lastName.value, email.value, password.value, confirm.value)"
+  >
+    <ion-grid [fixed]="true">
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center>
+          <div class="title">
+            <ion-text color="white" class="ion-margin">CADASTRE-SE</ion-text>
+          </div>
+          <ion-list lines="none">
+            <ion-item class="ion-margin input">
+              <ion-input
+                name="firstName"
+                #firstName
+                placeholder="Nome"
+                required
+                ngModel
+              ></ion-input>
+            </ion-item>
+
+            <ion-item class="ion-margin input">
+              <ion-input
+                name="lastName"
+                #lastName
+                placeholder="Sobrenome"
+                required
+                ngModel
+              ></ion-input>
+            </ion-item>
+            <ion-item class="ion-margin input">
+              <ion-input
+                name="email"
+                #email
+                type="email"
+                placeholder="email@..."
+                required
+                ngModel
+              ></ion-input>
+            </ion-item>
+            <ion-item class="ion-margin input">
+              <ion-input
+                name="password"
+                #password
+                type="password"
+                placeholder="Password"
+                required
+                ngModel
+              ></ion-input>
+              <ion-input
+                name="confirm"
+                #confirm
+                type="password"
+                placeholder="Confirme sua senha"
+                required
+                ngModel
+              ></ion-input>
+            </ion-item>
+          </ion-list>
+
+          <ion-list lines="none" class="ion-justify-content-between buttons">
+            <ion-button
+              shape="round"
+              strong="true"
+              class="ion-margin"
+              color="white"
+              routerLink="/auth"
+            >
+              VOLTAR
+              <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+            </ion-button>
+
+            <ion-button
+              shape="round"
+              strong="true"
+              class="ion-margin"
+              color="white"
+              type="submit"
+              [disabled]="form.invalid"
+              (click)="register(firstName.value, lastName.value, email.value, password.value, confirm.value)"
+              >Registrar</ion-button
+            >
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

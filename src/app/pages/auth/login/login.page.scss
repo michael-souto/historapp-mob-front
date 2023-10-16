@@ -1,0 +1,37 @@
+ion-content {
+  --background: var(--ion-color-primary) url('../../../../assets/imgs/topography.svg') repeat center;
+
+
+  .title {
+    margin-top: 40%;
+    font-size: 2.5rem;
+  }
+  ion-list {
+    background: transparent;
+    ion-list-header {
+      font-weight: 1000;
+      font-size: 1.5rem;
+      background: transparent;
+      color: --var(--ion-color-white);
+    }
+    ion-item {
+      background: transparent;
+    }
+
+    ion-item.input {
+      border: 1px solid var(--ion-color-light);
+      border-radius: 20px;
+      -webkit-box-shadow: 0 6px 4px -4px var(--ion-color-medium);
+      -moz-box-shadow: 0 6px 4px -4px var(--ion-color-medium);
+      box-shadow: 0 6px 4px -4px var(--ion-color-medium);
+      background: transparent;
+    }
+    p {
+      font-size: 0.8rem;
+    }
+  }
+  ion-list.buttons {
+    display: flex;
+
+  }
+}

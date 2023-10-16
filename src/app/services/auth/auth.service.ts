@@ -159,13 +159,13 @@ export class AuthService {
     if (!this.isLoginPage()) {
       this.previousUrl = window.location.href;
     }
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/auth"]);
   }
 
   get previousUrl(): string {
     return localStorage.getItem("previous-url") ?? '';
   }
-  set previousUrl(url: string) {
+  set previousUrl(url: string | null) {
     if (url == null) {
       localStorage.removeItem("previous-url");
     } else {

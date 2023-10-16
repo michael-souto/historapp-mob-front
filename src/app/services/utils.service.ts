@@ -136,6 +136,10 @@ export class UtilsService {
       }
     }
   }
+
+  backMyBaseRoute() {
+    this.router.navigate([this.getDefautRouteAbove()]);
+  }
 }
 
 export class Dialog {

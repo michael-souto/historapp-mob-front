@@ -1,0 +1,58 @@
+<ion-content [fullscreen]="true">
+  <form #form="ngForm" (ngSubmit)="login(email.value, password.value)" (keyup.enter)="login(email.value, password.value)">
+    <ion-grid [fixed]="true">
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center>
+          <div class="title">
+            <ion-text color="white" class="ion-margin">BEM VINDO!</ion-text>
+          </div>
+          <ion-list lines="none">
+            <ion-item class="ion-margin input">
+              <ion-input
+                placeholder="E-mail"
+                type="text"
+                clearInput="true"
+                #email
+              ></ion-input>
+            </ion-item>
+            <ion-item class="ion-margin input">
+              <ion-input
+                placeholder="Senha"
+                type="password"
+                clearInput="true"
+                #password
+              ></ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-list lines="none" class="ion-justify-content-between buttons">
+            <ion-button
+              shape="round"
+              strong="true"
+              class="ion-margin"
+              color="white"
+              routerLink="/auth"
+            >
+              VOLTAR
+              <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+            </ion-button>
+
+            <ion-button
+              shape="round"
+              strong="true"
+              class="ion-margin"
+              color="white"
+              type="submit"
+              [disabled]="form.invalid"
+            >
+              ENTRAR
+              <ion-icon name="log-in" slot="end"></ion-icon>
+            </ion-button>
+          </ion-list>
+          <ion-text color="white"
+            ><p class="ion-margin">Esqueceu a senha?</p></ion-text
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

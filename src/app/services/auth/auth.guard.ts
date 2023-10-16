@@ -17,7 +17,7 @@ export class AuthGuard  {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-
+    console.log('passe')
     if (next.routeConfig?.path == 'login'){
       return false;
     } else {

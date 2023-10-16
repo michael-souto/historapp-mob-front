@@ -1,0 +1,32 @@
+<ion-tabs #tabs (ionTabsDidChange)="setCurrentTab($event)">
+
+  <ion-tab-bar slot="bottom">
+
+    <ion-tab-button tab="preview" layout="icon-start" [ngClass]="{'selected': selectedTab == 'preview'}">
+      <fa-icon size="2x" icon="calendar-day"> </fa-icon>
+      <ion-label *ngIf="selectedTab == 'preview'">Evento</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="annotations" layout="icon-start" [ngClass]="{'selected': selectedTab == 'annotations'}">
+      <fa-icon size="2x" icon="sticky-note"> </fa-icon>
+      <ion-label *ngIf="selectedTab == 'annotations'">Anotação</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="characters" layout="icon-start" [ngClass]="{'selected': selectedTab == 'characters'}">
+      <fa-icon size="2x" icon="user-friends"> </fa-icon>
+      <ion-label *ngIf="selectedTab == 'characters'">Personagens</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="locales" layout="icon-start" [ngClass]="{'selected': selectedTab == 'locales'}">
+      <fa-icon size="2x" icon="map-marked-alt"> </fa-icon>
+      <ion-label *ngIf="selectedTab == 'locales'">Lugares</ion-label>
+    </ion-tab-button>
+
+    <!-- <ion-tab-button tab="options" layout="icon-start" [ngClass]="{'selected': selectedTab == 'options'}">
+      <fa-icon size="2x" icon="ellipsis-v"> </fa-icon>
+      <ion-label *ngIf="selectedTab == 'options'">Opções</ion-label>
+    </ion-tab-button> -->
+
+  </ion-tab-bar>
+
+</ion-tabs>
